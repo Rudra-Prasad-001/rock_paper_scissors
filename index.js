@@ -58,14 +58,14 @@ let computerChoice = function () {
 
 let userChoice = function () {
    let userInput = prompt("Enter Rock , Paper or Scissor");
-   userInput = (userInput.slice(0,1)).toUpperCase() + (userInput.slice(1,userInput.length)).toLowerCase() ;
+   userInput = userInput.charAt(0).toUpperCase() + userInput.slice(1).toLowerCase() ;
 
    if ((userInput === "Rock") || (userInput === "Paper") || (userInput === "Scissor")) {
       return  userInput;
    }
 
    else {
-      return console.log(userInput + " is not a valid input") ;
+      return alert(userInput + " is not a valid input") ;
    } 
 }
 
@@ -78,30 +78,30 @@ function playRound() {
  let userSelction =  userChoice();
 
    if( userSelction === computerSelection ) {
-      console.log("Both choose " + userSelction + " draw round");
+      alert("Both choose " + userSelction + " draw round");
    }
    else if (userSelction === "Rock" && computerSelection === "Paper") {
-      console.log("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction);
+      alert("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction);
       computerWins += 1 ;
    }
    else if (userSelction === "Rock" && computerSelection === "Scissor") {
-      console.log("User wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction) ;
+      alert("User wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction) ;
       userWins += 1;
    }
    else if (userSelction === "Paper" && computerSelection === "Rock") {
-      console.log("Users wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction) ;
+      alert("Users wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction) ;
       userWins += 1;
    }
    else if (userSelction === "Paper" && computerSelection === "Scissor") {
-      console.log("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction);
+      alert("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction);
       computerWins += 1 ;
    }
    else if (userSelction === "Scissor" && computerSelection === "Rock") {
-      console.log("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction);
+      alert("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction);
       computerWins += 1;
    }
    else if (userSelction === "Scissor" && computerSelection === "Paper") {
-      console.log("Users wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction) ;
+      alert("Users wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction) ;
       userWins += 1;
    }
    
@@ -116,15 +116,15 @@ function playGame() {
    }
 
    if( userWins > computerWins) {
-      console.log("User wins the game by winning " + userWins + " rounds");
+      alert("User wins the game by winning " + userWins + " rounds");
    }
 
    else if( userWins < computerWins) {
-      console.log("computer wins the game by winning " + computerWins + " rounds");
+      alert("computer wins the game by winning " + computerWins + " rounds");
 
    }
    else if ( userWins === computerWins) {
-      console.log("Math draw both user and computer wins " + userWins + " rounds each");
+      alert("Math draw both user and computer wins " + userWins + " rounds each");
    }
 }
 
