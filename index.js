@@ -124,7 +124,7 @@ function playGame() {
 
    }
    else if ( userWins === computerWins) {
-      alert("Math draw both user and computer wins " + userWins + " rounds each");
+      alert("Match draw both user and computer wins " + userWins + " rounds each");
    }
 }
 
