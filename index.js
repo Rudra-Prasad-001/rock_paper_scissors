@@ -41,77 +41,84 @@
                                                                       */
 
 
+      let computerChoice = function () {
+         let computerInput = Math.floor(Math.random() * 3) + 1;
+         if (computerInput === 1) {
+             return "Rock";
+         } else if (computerInput === 2) {
+             return "Paper";
+         } else {
+             return "Scissor";
+         }
+     };
+     
+     const container = document.querySelector("#container");
+     let result = document.querySelector("#result");
+     const body = document.querySelector('body') ;
+     const empty = document.querySelector('#empty')
+     
+     let userWins = 0;
+     let computerWins = 0;
+     
+     container.addEventListener('click', (e) => {
+         let target = e.target;
+         if (target.tagName === 'BUTTON') {
+             let userSelection = target.id.charAt(0).toUpperCase() + target.id.slice(1).toLowerCase();
+             playRound(userSelection);
+         }
+     });
+     
+     function playRound(userSelection) {
+         let computerSelection = computerChoice();
+     
+         let roundResult;
+         if (userSelection === computerSelection) {
+             roundResult = `Both chose ${userSelection}. It's a draw!`;
+         } else if (userSelection === "Rock" && computerSelection === "Paper" ||
+                    userSelection === "Paper" && computerSelection === "Scissor" ||
+                    userSelection === "Scissor" && computerSelection === "Rock") {
+             roundResult = `Computer wins the round! Computer chose ${computerSelection} and you chose ${userSelection}.`;
+             computerWins += 1;
+         } else {
+             roundResult = `You win the round! Computer chose ${computerSelection} and you chose ${userSelection}.`;
+             userWins += 1;
+         }
+     
+         result.innerHTML += `${roundResult}<br>User Wins: ${userWins}, Computer Wins: ${computerWins}<br><br>`;
+     
+         checkWinner();
+     }
+     
+     function checkWinner() {
+         if (userWins === 5) {
+             result.innerHTML += `Congratulations! You win the game with ${userWins} points!<br><br>`;
+             resetGame();
+         } else if (computerWins === 5) {
+             result.innerHTML += `Computer wins the game with ${computerWins} points! Better luck next time!<br><br>`;
+             resetGame();
+         }
+     }
+     
+     function resetGame() {
+         userWins = 0;
+         computerWins = 0;
+         result.innerHTML += `Game reset. Let's play again!<br><br>`;
+         result.parentNode.removeChild(result) ; // remove the result div to clear its text
+         
+         result = document.createElement('div')
 
-let computerChoice = function () {
-   let computerInput = Math.floor(Math.random()*3) + 1 ;
-   if(computerInput === 1) {
-      return "Rock" ;
-   }
-   else if (computerInput === 2) {
-      return "Paper" ;
-   }
+         result.setAttribute("style" , " display : flex ; justify-content : center ; align-items : center ; margin-top : 10px ; height : 60% ")
+         
 
-   else if (computerInput === 3) {
-      return "Scissor" ;
-   }
-}
+         body.insertBefore(result, empty);
 
-// Rework start
-const container = document.querySelector("#container") ;
-
-const result = document.querySelector("#result") ;
+        
 
 
-
-container.addEventListener('click' , (e) => {
-  let  target = e.target ; 
-  
-  let userSelection = target.id.charAt(0).toUpperCase() + target.id.slice(1).toLowerCase();
-        playRound(userSelection);
-
-} )
-
-
-
-
-let userWins = 0 ;
-let computerWins = 0 ;
-
-function playRound(userSelection) {
-  
- let computerSelection = computerChoice();
- 
-
-   if( userSelection === computerSelection ) {
-      result.textContent =("Both choose " + userSelection + " draw round");
-   }
-   else if (userSelection === "Rock" && computerSelection === "Paper") {
-      result.textContent =("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelection);
-      computerWins += 1 ;
-   }
-   else if (userSelection === "Rock" && computerSelection === "Scissor") {
-      result.textContent =("User wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelection) ;
-      userWins += 1;
-   }
-   else if (userSelection === "Paper" && computerSelection === "Rock") {
-      result.textContent =("Users wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelection) ;
-      userWins += 1;
-   }
-   else if (userSelection === "Paper" && computerSelection === "Scissor") {
-      result.textContent =("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelection);
-      computerWins += 1 ;
-   }
-   else if (userSelection === "Scissor" && computerSelection === "Rock") {
-      result.textContent =("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelection);
-      computerWins += 1;
-   }
-   else if (userSelection === "Scissor" && computerSelection === "Paper") {
-      result.textContent =("Users wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelection) ;
-      userWins += 1;
-   }
-   
-
-}
+     }
+     
+     
+     
 
 
 
