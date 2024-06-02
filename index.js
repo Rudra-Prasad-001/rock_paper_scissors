@@ -15,13 +15,13 @@
 3. CREATE two counters named userWins and computerWins tob keep track of the winners in differentr rounds , INITIALIZE both with Zero
 
 4. Logic for deciding the winnner
-   a) IF both userSelection and computerSelection is Rock print draw round , IF userSelction is Rock and computerSelection 
+   a) IF both userSelection and computerSelection is Rock print draw round , IF userSelection is Rock and computerSelection 
       is Paper print computer wins the round ELSE user wins the round
 
-   b) IF both userSelection and computerSelection is paper print draw round , IF userSelction is paper and computerSelection 
+   b) IF both userSelection and computerSelection is paper print draw round , IF userSelection is paper and computerSelection 
       is Scissor print computer wins the round ELSE user wins the round
 
-   c) IF both userSelection and computerSelection is Scissor print draw round , IF userSelction is Scissor and computerSelection 
+   c) IF both userSelection and computerSelection is Scissor print draw round , IF userSelection is Scissor and computerSelection 
       is Rock print computer wins the round ELSE user wins the round
 
    d) Increase the userWins by 1 each time user wins , Increase computerWins by 1 each time Computer wins in STEP - 4 a , b , c
@@ -56,76 +56,83 @@ let computerChoice = function () {
    }
 }
 
-let userChoice = function () {
-   let userInput = prompt("Enter Rock , Paper or Scissor");
-   userInput = userInput.charAt(0).toUpperCase() + userInput.slice(1).toLowerCase() ;
+// Rework start
+const container = document.querySelector("#container") ;
 
-   if ((userInput === "Rock") || (userInput === "Paper") || (userInput === "Scissor")) {
-      return  userInput;
-   }
+const result = document.querySelector("#result") ;
 
-   else {
-      return alert(userInput + " is not a valid input") ;
-   } 
-}
+
+
+container.addEventListener('click' , (e) => {
+  let  target = e.target ; 
+  
+  let userSelection = target.id.charAt(0).toUpperCase() + target.id.slice(1).toLowerCase();
+        playRound(userSelection);
+
+} )
+
+
+
 
 let userWins = 0 ;
 let computerWins = 0 ;
 
-function playRound() {
+function playRound(userSelection) {
   
  let computerSelection = computerChoice();
- let userSelction =  userChoice();
+ 
 
-   if( userSelction === computerSelection ) {
-      alert("Both choose " + userSelction + " draw round");
+   if( userSelection === computerSelection ) {
+      result.textContent =("Both choose " + userSelection + " draw round");
    }
-   else if (userSelction === "Rock" && computerSelection === "Paper") {
-      alert("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction);
+   else if (userSelection === "Rock" && computerSelection === "Paper") {
+      result.textContent =("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelection);
       computerWins += 1 ;
    }
-   else if (userSelction === "Rock" && computerSelection === "Scissor") {
-      alert("User wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction) ;
+   else if (userSelection === "Rock" && computerSelection === "Scissor") {
+      result.textContent =("User wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelection) ;
       userWins += 1;
    }
-   else if (userSelction === "Paper" && computerSelection === "Rock") {
-      alert("Users wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction) ;
+   else if (userSelection === "Paper" && computerSelection === "Rock") {
+      result.textContent =("Users wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelection) ;
       userWins += 1;
    }
-   else if (userSelction === "Paper" && computerSelection === "Scissor") {
-      alert("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction);
+   else if (userSelection === "Paper" && computerSelection === "Scissor") {
+      result.textContent =("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelection);
       computerWins += 1 ;
    }
-   else if (userSelction === "Scissor" && computerSelection === "Rock") {
-      alert("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction);
+   else if (userSelection === "Scissor" && computerSelection === "Rock") {
+      result.textContent =("Computer wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelection);
       computerWins += 1;
    }
-   else if (userSelction === "Scissor" && computerSelection === "Paper") {
-      alert("Users wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelction) ;
+   else if (userSelection === "Scissor" && computerSelection === "Paper") {
+      result.textContent =("Users wins the round" + " Computer selects " + computerSelection + " and user selects " + userSelection) ;
       userWins += 1;
    }
    
 
-
-
 }
 
-function playGame() {
-   for(let i = 0 ; i < 5 ; i++) {
-      playRound();
-   }
 
-   if( userWins > computerWins) {
-      alert("User wins the game by winning " + userWins + " rounds");
-   }
 
-   else if( userWins < computerWins) {
-      alert("computer wins the game by winning " + computerWins + " rounds");
 
-   }
-   else if ( userWins === computerWins) {
-      alert("Math draw both user and computer wins " + userWins + " rounds each");
-   }
-}
 
-playGame();
+// function playGame() {
+//    for(let i = 0 ; i < 5 ; i++) {
+//       playRound();
+//    }
+
+//    if( userWins > computerWins) {
+//        alert("User wins the game by winning " + userWins + " rounds");
+//    }
+
+//    else if( userWins < computerWins) {
+//       alert("computer wins the game by winning " + computerWins + " rounds");
+
+//    }
+//    else if ( userWins === computerWins) {
+//       alert("Math draw both user and computer wins " + userWins + " rounds each");
+//    }
+// }
+
+// playGame();

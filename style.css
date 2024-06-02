@@ -1,0 +1,15 @@
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    margin-bottom: 40px !important ;
+    column-gap: 15px;
+}
+
+#result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
